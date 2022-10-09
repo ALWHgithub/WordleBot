@@ -13,7 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 parser = cfg.ConfigParser()
 parser.read("config.cfg")
-TOKEN = '5696045705:AAFXIuW0Gyoh0Sr-mPItkt0Uyna8aBqos0E'
+TOKEN = parser.get('creds', 'token')
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -34,12 +34,12 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def main():
+    
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
     updater = Updater(TOKEN, use_context=True)
-
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
@@ -55,11 +55,12 @@ def main():
 
     # Start the Bot
     updater.start_webhook(
-        listen="0.0.0.0",
+        listen="127.0.0.1",
         port=int(PORT),
         url_path=TOKEN,
         webhook_url='https://https://wordle-bot-alwhgithub.herokuapp.com/' + TOKEN
     )
+    
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
