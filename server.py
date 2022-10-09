@@ -18,7 +18,7 @@ TOKEN = parser.get('creds', 'token')
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
-    """Send a message when the command /start is issued."""
+
     update.message.reply_text('Hi!')
 
 def help(update, context):
@@ -39,12 +39,12 @@ def main():
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    updater = Updater(TOKEN, use_context=True)
+    updater = Updater(token=TOKEN, use_context=True)
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler("help", help))
 
     # on noncommand i.e message - echo the message on Telegram
@@ -58,7 +58,7 @@ def main():
         listen="127.0.0.1",
         port=int(PORT),
         url_path=TOKEN,
-        webhook_url='https://https://wordle-bot-alwhgithub.herokuapp.com/' + TOKEN
+        webhook_url='https://wordle-bot-alwhgithub.herokuapp.com/' + TOKEN
     )
     
 
