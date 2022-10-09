@@ -3,7 +3,7 @@ import Wordle
 import configparser as cfg
 import os
 
-from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import Updater, MessageHandler,filters
 from telegram.ext import CommandHandler
 
 parser = cfg.ConfigParser()
@@ -87,7 +87,7 @@ dispatcher.add_handler(CommandHandler("start", start))
 
 # invoke the get_word_info function when the user sends a message
 # that is not a command.
-dispatcher.add_handler(MessageHandler(Filters.text, get_word_info))
+dispatcher.add_handler(MessageHandler(filters.TEXT, get_word_info))
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path=telegram_bot_token,
