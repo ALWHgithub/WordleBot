@@ -1,15 +1,14 @@
 
 from asyncio.windows_events import NULL
 import math
-from nltk.corpus import brown
-from nltk.corpus import words
+
 from random import random
 
 
 letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-master_word_list = [x for x in brown.words() if (
-    len(x) == 5 and x[0] in letters and x[1] in letters and x[2] in letters and x[3] in letters and x[4] in letters)]
+master_word_list = open("Data\words.txt", "r").read()
+
 
 global correctWord
 correctWord = master_word_list[math.floor(random()*len(master_word_list))]
